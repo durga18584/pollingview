@@ -1,0 +1,14 @@
+fastapi
+uvicorn[standard]
+python-multipart
+pymupdf
+unstructured
+sentence-transformers
+faiss-cpu
+elasticsearch
+redis
+python-docx
+pytesseract
+Pillow
+pyyaml
+requests

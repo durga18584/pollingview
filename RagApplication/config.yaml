@@ -1,0 +1,32 @@
+embedding_model: sentence-transformers/all-MiniLM-L6-v2
+
+dense_store:
+  type: faiss
+  index_file: ./data/faiss.index
+
+sparse_store:
+  type: elasticsearch
+  host: http://localhost:9200
+  index: docs_index
+
+cache_store:
+  type: redis
+  host: localhost
+  port: 6379
+  db: 0
+
+reranker:
+  type: transformers
+  model: cross-encoder/ms-marco-MiniLM-L-6-v2
+
+retrieval:
+  top_k_dense: 5
+  top_k_sparse: 5
+  hybrid_weights:
+    dense: 0.6
+    sparse: 0.4
+
+llm:
+  provider: openrouter
+  model: openai/gpt-3.5-turbo
+  api_key_env: OPENROUTER_API_KEY

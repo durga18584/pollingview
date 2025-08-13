@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+
+  redis:
+    image: redis:7
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  rag_app:
+    build: .
+    container_name: rag_app
+    depends_on:
+      - elasticsearch
+      - redis
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENROUTER_API_KEY= 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
+    volumes:
+      - .:/app
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
