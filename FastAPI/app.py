@@ -11,7 +11,7 @@ from sqlmodel import SQLModel, Field, create_engine, Session, select
 from typing import Optional
 
 # --- Config ---
-OPENROUTER_API_KEY = "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"
+OPENROUTER_API_KEY = "api_key"
 VISION_MODEL = "mistralai/mistral-small-3.2-24b-instruct:free"
 IMAGE_DIR = "pdf_images"
 DB_PATH = "results.db"
